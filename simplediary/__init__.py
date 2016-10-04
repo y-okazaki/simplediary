@@ -6,4 +6,4 @@ app.config.from_object('simplediary.config')
 app.config.from_pyfile('config.py')
 db = SQLAlchemy(app)
 
-import simplediary.models
+import simplediary.views
