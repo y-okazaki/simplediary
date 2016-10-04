@@ -1,0 +1,10 @@
+<form method="POST">
+    {{ form.csrf_token }}
+    <dl>
+        <dt>ユーザー登録</dt>
+        <dd>ユーザー名：{{ form.username }}</dd>
+        <dd>メールアドレス：{{ form.email }}</dd>
+        <dd>パスワード：{{ form.password }}</dd>
+        <dd><input type="submit" value="送信"></dd>
+    </dl>
+</form>

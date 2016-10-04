@@ -1,4 +1,5 @@
 from simplediary import db
+from sqlalchemy.ext.hybrid import hybrid_property
 
 
 class User(db.Model):
@@ -7,6 +8,14 @@ class User(db.Model):
     email = db.Column(db.String(100), unique=True)
     _password = db.Column('password', db.String(140), nullable=False)
     diary = db.relationship("Diary", backref=db.backref('User'))
+
+    @hybrid_property
+    def password(self):
+        return self._password
+
+    @password.setter
+    def _set_password(self, plaintext):
+        self._password = plaintext
 
 class Pond(db.Model):
     id = db.Column(db.Integer, primary_key=True)
