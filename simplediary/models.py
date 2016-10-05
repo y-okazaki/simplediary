@@ -1,4 +1,4 @@
-from simplediary import db
+from simplediary import bcrypt, db
 from sqlalchemy.ext.hybrid import hybrid_property
 
 
@@ -15,7 +15,7 @@ class User(db.Model):
 
     @password.setter
     def _set_password(self, plaintext):
-        self._password = plaintext
+        self._password = bcrypt.generate_password_hash(plaintext).decode('utf-8')
 
 class Pond(db.Model):
     id = db.Column(db.Integer, primary_key=True)
