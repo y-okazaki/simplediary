@@ -1,11 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'admin_base.html' %}
+
+{% block title %}{{ super() }}- ユーザー追加{% endblock %}
+
+{% block contents %}
     <h2>ユーザー新規登録</h2>
+    {% if form.errors %}
+    <ul>
+        {% for error in form.errors.values() %}
+        <li>{{ error[0] }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
     {% include 'user/form.html' %}
-</body>
-</html>
+{% endblock contents %}

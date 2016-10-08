@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>エビ養殖管理システム{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <header id="header">
+        <h1>管理画面</h1>
+    </header>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="flash_message">
+        <ul>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+{% endwith %}
+    <div id="contents">
+        {% block contents %}{% endblock %}
+    </div>
+    <footer id="footer">
+        <small>Copyright(c) 2016 okazaki All Rights Reserved. </small>
+    </footer>
+</body>
+</html>
