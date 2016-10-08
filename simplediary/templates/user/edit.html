@@ -1,0 +1,15 @@
+{% extends 'admin_base.html' %}
+
+{% block title %}{{ super() }}- ユーザー追加{% endblock %}
+
+{% block contents %}
+    <h2>ユーザー情報変更</h2>
+    {% if form.errors %}
+    <ul>
+        {% for error in form.errors.values() %}
+        <li>{{ error[0] }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% include 'user/form.html' %}
+{% endblock contents %}

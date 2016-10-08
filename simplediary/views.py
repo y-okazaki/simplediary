@@ -26,12 +26,12 @@ def add_user():
         return redirect(url_for('index'))
     return render_template('user/add.html', form=form)
 
-# @app.route('/user/<user_id>/edit', methods=['GET', 'POST'])
-# def edit_user(user_id):
-#     user = User.query.filter_by(id=user_id).first_or_404()
-#     form = UserEditForm(request.form, user)
-#     if form.validate_on_submit():
-#         form.populate_obj(user)
-#         db.session.commit()
-#         return redirect(url_for('index'))
-#     return render_template('user/edit.html', form=form)
+@app.route('/user/<user_id>/edit', methods=['GET', 'POST'])
+def edit_user(user_id):
+    user = User.query.filter_by(id=user_id).first_or_404()
+    form = UserEditForm(request.form, user)
+    if form.validate_on_submit():
+        form.populate_obj(user)
+        db.session.commit()
+        return redirect(url_for('index'))
+    return render_template('user/edit.html', form=form)

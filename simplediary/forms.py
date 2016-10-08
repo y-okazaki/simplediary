@@ -10,3 +10,9 @@ class UserForm(Form):
     email = TextField('email', validators=[Required(message='メールアドレスを入力してください。'),
                                 Email(message='メールアドレスの書式が正しくありません。')])
     password = PasswordField('password', validators=[Required(message='パスワードを入力してください。')])
+
+class UserEditForm(Form):
+    username = TextField('username', validators=[Required(message='ユーザー名を入力してください。')])
+    email = TextField('email', validators=[Required(message='メールアドレスを入力してください。'),
+                                Email(message='メールアドレスの書式が正しくありません。')])
+    password = PasswordField('password')
