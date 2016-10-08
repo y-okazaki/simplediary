@@ -1,0 +1,21 @@
+{% extends 'admin_base.html' %}
+
+{% block title %}{{ super() }}- ユーザー一覧{% endblock %}
+
+{% block contents %}
+    <h2>ユーザー一覧</h2>
+    <div class="user_list">
+        <table class="table_list">
+            <tbody>
+    {% for user in user_list %}
+                <tr>
+                    <th>{{ user.id }}</th>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td><a href="{{ url_for('edit_user', user_id=user.id) }}">編　集</a></td>
+                </tr>
+    {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock contents %}
