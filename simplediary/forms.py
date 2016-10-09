@@ -16,3 +16,6 @@ class UserEditForm(Form):
     email = TextField('email', validators=[Required(message='メールアドレスを入力してください。'),
                                 Email(message='メールアドレスの書式が正しくありません。')])
     password = PasswordField('password')
+
+class PondForm(Form):
+    pondname = TextField('pondname', validators=[Required(message='管理池名を入力してください。')])

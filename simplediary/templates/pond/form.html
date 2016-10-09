@@ -1,0 +1,8 @@
+<form method="POST">
+    {{ form.csrf_token }}
+    <dl>
+        <dt>管理池情報</dt>
+        <dd>管理池名：{{ form.pondname }}</dd>
+        <dd><input type="submit" value="送信"></dd>
+    </dl>
+</form>

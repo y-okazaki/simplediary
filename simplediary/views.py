@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for, flash
 from simplediary import app, db
 from simplediary.models import User, Pond, Season, Diary
-from simplediary.forms import UserForm, UserEditForm
+from simplediary.forms import UserForm, UserEditForm, PondForm
 
 @app.route('/')
 def index():
@@ -43,3 +43,14 @@ def edit_user(user_id):
 def pond_list():
     data = Pond.query.order_by('id desc')
     return render_template('pond/list.html', pond_list=data)
+
+@app.route('/pond/add', methods=['GET', 'POST'])
+def add_pond():
+    form = PondForm(request.form)
+    if form.validate_on_submit():
+        pond = Pond()
+        form.populate_obj(pond)
+        db.session.add(pond)
+        db.session.commit()
+        return redirect(url_for('pond_list'))
+    return render_template('pond/add.html', form=form)
