@@ -65,3 +65,12 @@ def edit_pond(pond_id):
         db.session.commit()
         return redirect(url_for('pond_list'))
     return render_template('pond/edit.html', form=form)
+
+@app.route('/pond/<pond_id>/delete', methods=['GET', 'POST'])
+def delete_pond(pond_id):
+    pond = Pond.query.filter_by(id=pond_id).first_or_404()
+    if request.method == 'POST':
+        db.session.delete(pond)
+        db.session.commit()
+        return redirect(url_for('pond_list'))
+    return render_template('pond/delete.html', pond=pond)

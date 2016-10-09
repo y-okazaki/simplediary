@@ -1,0 +1,12 @@
+{% extends 'pond/base.html' %}
+
+{% block title %}{{ super() }}- 追加{% endblock %}
+
+{% block contents %}
+    <h2>管理池削除</h2>
+    <form method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <p>削除する養殖池：{{ pond.pondname }}</p>
+        <input type="submit" value="削　除">
+    </form>
+{% endblock contents %}
