@@ -1,0 +1,20 @@
+{% extends 'pond/base.html' %}
+
+{% block title %}{{ super() }}-一覧{% endblock %}
+
+{% block contents %}
+    <h2>管理池一覧</h2>
+    {{ super() }}
+    <div class="pond_list">
+        <table class="table_list">
+            <tbody>
+    {% for pond in pond_list %}
+                <tr>
+                    <th>{{ pond.id }}</th>
+                    <td>{{ pond.pondname }}</td>
+                </tr>
+    {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock contents %}

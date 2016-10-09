@@ -37,3 +37,9 @@ def edit_user(user_id):
         db.session.commit()
         return redirect(url_for('index'))
     return render_template('user/edit.html', form=form)
+
+
+@app.route('/pond/')
+def pond_list():
+    data = Pond.query.order_by('id desc')
+    return render_template('pond/list.html', pond_list=data)
