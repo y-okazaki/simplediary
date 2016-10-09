@@ -1,0 +1,15 @@
+{% extends 'pond/base.html' %}
+
+{% block title %}{{ super() }}- 追加{% endblock %}
+
+{% block contents %}
+    <h2>管理池編集画面</h2>
+    {% if form.errors %}
+    <ul>
+        {% for error in form.errors.values() %}
+        <li>{{ error[0] }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% include 'pond/form.html' %}
+{% endblock contents %}

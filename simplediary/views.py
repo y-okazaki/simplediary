@@ -54,3 +54,14 @@ def add_pond():
         db.session.commit()
         return redirect(url_for('pond_list'))
     return render_template('pond/add.html', form=form)
+
+@app.route('/pond/<pond_id>/edit', methods=['GET','POST'])
+def edit_pond(pond_id):
+    pond = Pond.query.filter_by(id=pond_id).first_or_404()
+    form = PondForm(request.form, pond)
+    if form.validate_on_submit():
+        form.populate_obj(pond)
+        db.session.add(pond)
+        db.session.commit()
+        return redirect(url_for('pond_list'))
+    return render_template('pond/edit.html', form=form)

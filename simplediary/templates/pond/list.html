@@ -12,6 +12,7 @@
                 <tr>
                     <th>{{ pond.id }}</th>
                     <td>{{ pond.pondname }}</td>
+                    <td><a href="{{ url_for('edit_pond', pond_id=pond.id) }}">編　集</a></td>
                 </tr>
     {% endfor %}
             </tbody>
