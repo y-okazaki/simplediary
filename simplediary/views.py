@@ -85,7 +85,6 @@ def season_list():
 def add_season():
     form = SeasonForm(request.form)
     if form.validate_on_submit():
-        print(request.form["end_date"])
         if request.form["end_date"] == "":
             del form.end_date
         season = Season()
@@ -94,3 +93,16 @@ def add_season():
         db.session.commit()
         return redirect(url_for('season_list'))
     return render_template('season/add.html', form=form)
+
+@app.route('/season/<season_id>/edit', methods=['GET', 'POST'])
+def edit_season(season_id):
+    season = Season.query.filter_by(id=season_id).first_or_404()
+    form = SeasonForm(request.form, season)
+    if form.validate_on_submit():
+        if request.form["end_date"] == "":
+            del form.end_date
+        form.populate_obj(season)
+        db.session.add(season)
+        db.session.commit()
+        return redirect(url_for('season_list'))
+    return render_template('season/edit.html', form=form)
