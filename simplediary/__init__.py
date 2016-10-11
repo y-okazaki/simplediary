@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CsrfProtect
-from flask.ext.bcrypt import Bcrypt
+from flask_bcrypt import Bcrypt
 
 csrf = CsrfProtect()
 

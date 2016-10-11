@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for, flash
 from simplediary import app, db
 from simplediary.models import User, Pond, Season, Diary
-from simplediary.forms import UserForm, UserEditForm, PondForm
+from simplediary.forms import UserForm, UserEditForm, PondForm, SeasonForm
 import datetime
 
 @app.route('/')
@@ -80,3 +80,17 @@ def delete_pond(pond_id):
 def season_list():
     data = Season.query.order_by('id desc')
     return render_template('season/list.html', season_list=data)
+
+@app.route('/season/add', methods=['GET', 'POST'])
+def add_season():
+    form = SeasonForm(request.form)
+    if form.validate_on_submit():
+        print(request.form["end_date"])
+        if request.form["end_date"] == "":
+            del form.end_date
+        season = Season()
+        form.populate_obj(season)
+        db.session.add(season)
+        db.session.commit()
+        return redirect(url_for('season_list'))
+    return render_template('season/add.html', form=form)

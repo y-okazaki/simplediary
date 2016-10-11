@@ -1,5 +1,5 @@
-from flask.ext.wtf import Form
-from wtforms.fields import TextField, TextAreaField, PasswordField
+from flask_wtf import Form
+from wtforms.fields import TextField, TextAreaField, PasswordField, DateField
 from wtforms.validators import Required, Email
 
 from .util.validators import Unique
@@ -19,3 +19,9 @@ class UserEditForm(Form):
 
 class PondForm(Form):
     pondname = TextField('pondname', validators=[Required(message='管理池名を入力してください。')])
+
+class SeasonForm(Form):
+    seasonname = TextField('seasonname', validators=[Required(message='シーズン名を入力してください。')])
+    start_date = DateField('start_date', validators=[Required(message='シーズン開始年月日を入力してください。')])
+    end_date = TextField('end_date')
+    note = TextAreaField('note')

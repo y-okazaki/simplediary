@@ -1,0 +1,11 @@
+<form method="POST">
+    {{ form.csrf_token }}
+    <dl>
+        <dt>シーズン情報</dt>
+        <dd>シーズン名：{{ form.seasonname }}</dd>
+        <dd>シーズン開始年月日：{{ form.start_date }}</dd>
+        <dd>シーズン終了年月日：{{ form.end_date }}</dd>
+        <dd>備考：{{ form.note }}</dd>
+        <dd><input type="submit" value="送信"></dd>
+    </dl>
+</form>

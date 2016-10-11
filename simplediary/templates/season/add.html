@@ -1,0 +1,15 @@
+{% extends 'season/base.html' %}
+
+{% block title %}{{ super() }}- 追加{% endblock %}
+
+{% block contents %}
+    <h2>シーズン新規登録</h2>
+    {% if form.errors %}
+    <ul>
+        {% for error in form.errors.values() %}
+        <li>{{ error[0] }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% include 'season/form.html' %}
+{% endblock contents %}
