@@ -18,7 +18,7 @@
                 <tr>
                     <th>{{ season.id }}</th>
                     <td>{{ season.seasonname }}</td>
-                    <td>{{ season.start_date }}〜{{ season.end_date }}</td>
+                    <td>{{ season.start_date|date_slash }}〜{% if season.end_date is not none %}{{ season.end_date|date_slash }}{% endif %}</td>
                     <td><a href="">編　集</a></td>
                     <td><a href="">削　除</a></td>
                 </tr>

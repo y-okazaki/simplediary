@@ -13,3 +13,4 @@ db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 
 import simplediary.views
+from simplediary.util import filters
