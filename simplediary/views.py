@@ -2,6 +2,7 @@ from flask import render_template, request, redirect, url_for, flash
 from simplediary import app, db
 from simplediary.models import User, Pond, Season, Diary
 from simplediary.forms import UserForm, UserEditForm, PondForm
+import datetime
 
 @app.route('/')
 def index():
@@ -74,3 +75,8 @@ def delete_pond(pond_id):
         db.session.commit()
         return redirect(url_for('pond_list'))
     return render_template('pond/delete.html', pond=pond)
+
+@app.route('/season/')
+def season_list():
+    data = Season.query.order_by('id desc')
+    return render_template('season/list.html', season_list=data)

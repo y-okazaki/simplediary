@@ -1,0 +1,29 @@
+{% extends 'season/base.html' %}
+
+{% block title %}{{ super() }}-一覧{% endblock %}
+
+{% block contents %}
+    <h2>シーズン一覧</h2>
+    {{ super() }}
+    <div class="season_list">
+        <table class="table_list">
+            <thead>
+                <th>id</th>
+                <th>シーズン名</th>
+                <th>期　間</th>
+                <th colspan="2">操作</th>
+            </thead>
+            <tbody>
+    {% for season in season_list %}
+                <tr>
+                    <th>{{ season.id }}</th>
+                    <td>{{ season.seasonname }}</td>
+                    <td>{{ season.start_date }}〜{{ season.end_date }}</td>
+                    <td><a href="">編　集</a></td>
+                    <td><a href="">削　除</a></td>
+                </tr>
+    {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock contents %}
