@@ -1,0 +1,17 @@
+{% extends 'season/base.html' %}
+
+{% block title %}{{ super() }}- 削除{% endblock %}
+
+{% block contents %}
+    <h2>シーズン削除</h2>
+    <form method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <dl>
+            <dt>削除するシーズン</dt>
+            <dd>シーズン名：{{ season.seasonname }}</dd>
+            <dd>シーズン期間：{{ season.start_date|date_slash }}〜{% if season.end_date is not none %}{{ season.end_date|date_slash }}{% endif %}</dd>
+            <dd>備考：{{ season.note }}</dd>
+        </dl>
+        <input type="submit" value="削　除">
+    </form>
+{% endblock contents %}

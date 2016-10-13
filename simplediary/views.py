@@ -106,3 +106,12 @@ def edit_season(season_id):
         db.session.commit()
         return redirect(url_for('season_list'))
     return render_template('season/edit.html', form=form)
+
+@app.route('/season/<season_id>/delete', methods=['GET', 'POST'])
+def delete_season(season_id):
+    season = Season.query.filter_by(id=season_id).first_or_404()
+    if request.method == 'POST':
+        db.session.delete(season)
+        db.session.commit()
+        return redirect(url_for('season_list'))
+    return render_template('season/delete.html', season=season)
