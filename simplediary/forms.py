@@ -35,3 +35,12 @@ class DiaryForm(Form):
     user_id      = TextField('user_id', validators=[Required(message='ユーザーIDを入力してください。')])
     date         = DateField('date', validators=[Required(message='日誌の年月日時を入力してください。')])
     created_date = TextField('created_date', validators=[Required(message='作成年月日時を入力してください。')])
+
+class DiaryEditForm(Form):
+    pond_id      = TextField('pond_id', validators=[Required(message='養殖池IDを入力してください。')])
+    season_id    = TextField('season_id', validators=[Required(message='シーズンIDを入力してください。')])
+    stock_number = TextField('stock_number')
+    feeding      = TextField('feeding')
+    report       = TextAreaField('report')
+    user_id      = TextField('user_id', validators=[Required(message='ユーザーIDを入力してください。')])
+    date         = DateField('date', validators=[Required(message='日誌の年月日時を入力してください。')])

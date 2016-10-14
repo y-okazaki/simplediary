@@ -1,0 +1,14 @@
+<form method="POST">
+    {{ form.csrf_token }}
+    <dl>
+        <dt>日誌情報</dt>
+        <dd>ユーザーID：{{ form.user_id }}</dd>
+        <dd>管理池ID：{{ form.pond_id }}</dd>
+        <dd>シーズンID：{{ form.season_id }}</dd>
+        <dd>予想尾数：{{ form.stock_number }}</dd>
+        <dd>餌の量：{{ form.feeding }}</dd>
+        <dd>記事：{{ form.report }}</dd>
+        <dd>記事の年月日：{{ form.date }}</dd>
+        <dd><input type="submit" value="送信"></dd>
+    </dl>
+</form>
