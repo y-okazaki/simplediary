@@ -9,3 +9,8 @@ def date_jp(date):
 def date_slash(date):
     change_date = date.strftime('%Y/%m/%d')
     return change_date
+
+@app.template_filter()
+def datetime_slash(date):
+    change_date = date.strftime('%Y/%m/%d %H:%M:%S')
+    return change_date

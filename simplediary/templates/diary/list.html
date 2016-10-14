@@ -19,6 +19,7 @@
                     <th>{{ diary.date }}</th>
                     <td>{{ diary.pond.pondname }}</td>
                     <td>{{ diary.season.seasonname }}</td>
+                    <td><a href="{{ url_for('detail_diary', diary_id=diary.id) }}">詳細</a></td>
                     <td><a href="">編　集</a></td>
                     <td><a href="">削　除</a></td>
                 </tr>

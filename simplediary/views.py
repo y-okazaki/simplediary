@@ -121,6 +121,11 @@ def diary_list():
     data = Diary.query.order_by('id desc')
     return render_template('diary/list.html', diary_list=data)
 
+@app.route('/diary/<diary_id>')
+def detail_diary(diary_id):
+    diary = Diary.query.filter_by(id=diary_id).first_or_404()
+    return render_template('diary/detail.html', diary=diary)
+
 @app.route('/diary/add', methods=['GET', 'POST'])
 def add_diary():
     form = DiaryForm(request.form)

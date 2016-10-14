@@ -1,0 +1,57 @@
+{% extends 'diary/base.html' %}
+
+{% block title %}{{ super() }}-詳細{% endblock %}
+
+{% block contents %}
+    <h2>養殖日誌</h2>
+    {{ super() }}
+    <div class="season_list">
+        <table class="table_list">
+            <tbody>
+                <tr>
+                    <th>ユーザーID</th>
+                    <td>{{ diary.user.username }}</td>
+                </tr>
+                <tr>
+                    <th>管理池</th>
+                    <td>{{ diary.pond.pondname }}</td>
+                </tr>
+                <tr>
+                    <th>シーズン</th>
+                    <td>{{ diary.season.seasonname }}</td>
+                </tr>
+                <tr>
+                    <th>予想尾数</th>
+                    <td>{{ diary.stock_number }}</td>
+                </tr>
+                <tr>
+                    <th>餌の量</th>
+                    <td>{{ diary.feeding }}</td>
+                </tr>
+                <tr>
+                    <th>記事</th>
+                    <td>{{ diary.report }}</td>
+                </tr>
+                <tr>
+                    <th>記事の年月日</th>
+                    <td>{{ diary.date|date_slash }}</td>
+                </tr>
+                <tr>
+                    <th>記事の作成年月日</th>
+                    <td>{{ diary.created_date|datetime_slash }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock contents %}0964562614
+
+
+pond_id = db.Column(db.Integer, db.ForeignKey('pond.id'), nullable=False)
+season_id = db.Column(db.Integer, db.ForeignKey('season.id'), nullable=False)
+stock_number = db.Column(db.Integer)
+feeding = db.Column(db.String(140))
+report = db.Column(db.Text)
+user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+date = db.Column(db.Date, nullable=False)
+update_date = db.Column(db.TIMESTAMP(), nullable=False)
+created_date = db.Column(db.DateTime, nullable=False)
