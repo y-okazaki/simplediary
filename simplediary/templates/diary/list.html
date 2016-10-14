@@ -21,7 +21,7 @@
                     <td>{{ diary.season.seasonname }}</td>
                     <td><a href="{{ url_for('detail_diary', diary_id=diary.id) }}">詳細</a></td>
                     <td><a href="{{ url_for('edit_diary', diary_id=diary.id) }}">編　集</a></td>
-                    <td><a href="">削　除</a></td>
+                    <td><a href="{{ url_for('delete_diary', diary_id=diary.id) }}">削　除</a></td>
                 </tr>
     {% endfor %}
             </tbody>

@@ -147,3 +147,12 @@ def edit_diary(diary_id):
         db.session.commit()
         return redirect(url_for('detail_diary', diary_id=diary_id))
     return render_template('diary/edit.html', form=form)
+
+@app.route('/diary/<diary_id>/delete', methods=['GET', 'POST'])
+def delete_diary(diary_id):
+    diary = Diary.query.filter_by(id=diary_id).first_or_404()
+    if request.method == 'POST':
+        db.session.delete(diary)
+        db.session.commit()
+        return redirect(url_for('diary_list'))
+    return render_template('diary/delete.html', diary=diary)
