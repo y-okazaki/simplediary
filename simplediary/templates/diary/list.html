@@ -1,0 +1,29 @@
+{% extends 'diary/base.html' %}
+
+{% block title %}{{ super() }}-一覧{% endblock %}
+
+{% block contents %}
+    <h2>養殖日誌一覧</h2>
+    {{ super() }}
+    <div class="season_list">
+        <table class="table_list">
+            <thead>
+                <th>年月日</th>
+                <th>池名</th>
+                <th>シーズン</th>
+                <th colspan="2">操作</th>
+            </thead>
+            <tbody>
+    {% for diary in diary_list %}
+                <tr>
+                    <th>{{ diary.date }}</th>
+                    <td>{{ diary.pond.pondname }}</td>
+                    <td>{{ diary.season.seasonname }}</td>
+                    <td><a href="">編　集</a></td>
+                    <td><a href="">削　除</a></td>
+                </tr>
+    {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock contents %}0964562614
