@@ -7,3 +7,6 @@ SimplediaryはPythonのフレームワークFlaskをベースに作ったエビ�
 ## Requirement
 python 3.4.3  
 使用しているモジュールはrequirements.txtに記載しております。
+
+## License
+This program is released under the MIT License, see LICENSE.txt.
