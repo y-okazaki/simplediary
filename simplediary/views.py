@@ -6,11 +6,13 @@ from flask.ext.login import login_user, current_user, login_required, logout_use
 import datetime
 
 @app.route('/')
+@login_required
 def index():
     data = Diary.query.order_by('id desc')
     return render_template('index.html', diaries=data)
 
 @app.route('/user/', methods=['GET', 'POST'])
+@login_required
 def user_list():
     user_list = User.query.order_by('id desc')
     return render_template('user/list.html', user_list=user_list)
@@ -29,6 +31,7 @@ def signin():
     return render_template('user/signin.html', form=form)
 
 @app.route('/user/add', methods=['GET', 'POST'])
+@login_required
 def add_user():
     form = UserForm(request.form)
     if form.validate_on_submit():
@@ -41,6 +44,7 @@ def add_user():
     return render_template('user/add.html', form=form)
 
 @app.route('/user/<user_id>/edit', methods=['GET', 'POST'])
+@login_required
 def edit_user(user_id):
     user = User.query.filter_by(id=user_id).first_or_404()
     form = UserEditForm(request.form, user)
@@ -52,13 +56,14 @@ def edit_user(user_id):
         return redirect(url_for('index'))
     return render_template('user/edit.html', form=form)
 
-
 @app.route('/pond/')
+@login_required
 def pond_list():
     data = Pond.query.order_by('id desc')
     return render_template('pond/list.html', pond_list=data)
 
 @app.route('/pond/add', methods=['GET', 'POST'])
+@login_required
 def add_pond():
     form = PondForm(request.form)
     if form.validate_on_submit():
@@ -70,6 +75,7 @@ def add_pond():
     return render_template('pond/add.html', form=form)
 
 @app.route('/pond/<pond_id>/edit', methods=['GET','POST'])
+@login_required
 def edit_pond(pond_id):
     pond = Pond.query.filter_by(id=pond_id).first_or_404()
     form = PondForm(request.form, pond)
@@ -81,6 +87,7 @@ def edit_pond(pond_id):
     return render_template('pond/edit.html', form=form)
 
 @app.route('/pond/<pond_id>/delete', methods=['GET', 'POST'])
+@login_required
 def delete_pond(pond_id):
     pond = Pond.query.filter_by(id=pond_id).first_or_404()
     if request.method == 'POST':
@@ -90,11 +97,13 @@ def delete_pond(pond_id):
     return render_template('pond/delete.html', pond=pond)
 
 @app.route('/season/')
+@login_required
 def season_list():
     data = Season.query.order_by('id desc')
     return render_template('season/list.html', season_list=data)
 
 @app.route('/season/add', methods=['GET', 'POST'])
+@login_required
 def add_season():
     form = SeasonForm(request.form)
     if form.validate_on_submit():
@@ -108,6 +117,7 @@ def add_season():
     return render_template('season/add.html', form=form)
 
 @app.route('/season/<season_id>/edit', methods=['GET', 'POST'])
+@login_required
 def edit_season(season_id):
     season = Season.query.filter_by(id=season_id).first_or_404()
     form = SeasonForm(request.form, season)
@@ -121,6 +131,7 @@ def edit_season(season_id):
     return render_template('season/edit.html', form=form)
 
 @app.route('/season/<season_id>/delete', methods=['GET', 'POST'])
+@login_required
 def delete_season(season_id):
     season = Season.query.filter_by(id=season_id).first_or_404()
     if request.method == 'POST':
@@ -140,6 +151,7 @@ def detail_diary(diary_id):
     return render_template('diary/detail.html', diary=diary)
 
 @app.route('/diary/add', methods=['GET', 'POST'])
+@login_required
 def add_diary():
     form = DiaryForm(request.form)
     if form.validate_on_submit():
@@ -151,6 +163,7 @@ def add_diary():
     return render_template('diary/add.html', form=form)
 
 @app.route('/diary/<diary_id>/edit', methods=['GET', 'POST'])
+@login_required
 def edit_diary(diary_id):
     diary = Diary.query.filter_by(id=diary_id).first_or_404()
     form = DiaryEditForm(request.form, diary)
@@ -162,6 +175,7 @@ def edit_diary(diary_id):
     return render_template('diary/edit.html', form=form)
 
 @app.route('/diary/<diary_id>/delete', methods=['GET', 'POST'])
+@login_required
 def delete_diary(diary_id):
     diary = Diary.query.filter_by(id=diary_id).first_or_404()
     if request.method == 'POST':
