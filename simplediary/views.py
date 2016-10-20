@@ -1,7 +1,8 @@
 from flask import render_template, request, redirect, url_for, flash
 from simplediary import app, db
 from simplediary.models import User, Pond, Season, Diary
-from simplediary.forms import UserForm, UserEditForm, PondForm, SeasonForm, DiaryForm, DiaryEditForm
+from simplediary.forms import UserForm, UserEditForm, UserLoginForm, PondForm, SeasonForm, DiaryForm, DiaryEditForm
+from flask.ext.login import login_user, current_user, login_required, logout_user
 import datetime
 
 @app.route('/')
@@ -14,6 +15,18 @@ def user_list():
     user_list = User.query.order_by('id desc')
     return render_template('user/list.html', user_list=user_list)
 
+@app.route('/user/signin', methods=['GET', 'POST'])
+def signin():
+    form = UserLoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first_or_404()
+        if user.is_correct_password(form.password.data):
+            login_user(user)
+            flash("ログインしました")
+            return redirect(url_for('index'))
+        else:
+            return redirect(url_for('signin'))
+    return render_template('user/signin.html', form=form)
 
 @app.route('/user/add', methods=['GET', 'POST'])
 def add_user():

@@ -1,8 +1,9 @@
 from simplediary import bcrypt, db
 from sqlalchemy.ext.hybrid import hybrid_property
+from flask.ext.login import UserMixin
 
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(100), unique=True)
@@ -16,6 +17,9 @@ class User(db.Model):
     @password.setter
     def _set_password(self, plaintext):
         self._password = bcrypt.generate_password_hash(plaintext).decode('utf-8')
+
+    def is_correct_password(self, plaintext):
+        return bcrypt.check_password_hash(self._password, plaintext)
 
 class Pond(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -44,8 +48,3 @@ class Diary(db.Model):
     pond = db.relationship("Pond", backref=db.backref('Diary'))
     season = db.relationship("Season", backref=db.backref('Diary'))
     user = db.relationship("User", backref=db.backref('Diary'))
-
-
-    # @hybrid_property
-    # def password(self):
-    #     return self._password

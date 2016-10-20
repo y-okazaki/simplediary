@@ -1,0 +1,17 @@
+{% extends 'admin_base.html' %}
+
+{% block contents %}
+    <h2>ユーザーログイン</h2>
+    {% for error in form.errors %}
+    <p class="error"><strong>Error:</strong>{{ error }}</p>
+    {% endfor %}
+<form method="POST">
+{{ form.csrf_token }}
+  <dl>
+    <dt>会員情報</dt>
+    <dd>{{ form.username.label }}：{{ form.username }}</dd>
+    <dd>{{ form.password.label }}：{{ form.password }}</dd>
+    <dd><p><input type="submit" value="ログイン" /></p></dd>
+  </dl>
+</form>
+{% endblock contents %}
